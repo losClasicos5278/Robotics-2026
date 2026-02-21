@@ -89,6 +89,8 @@ public final class Constants {
     public static final int kFrontRightTurningCanId = 7;
     public static final int kRearRightTurningCanId = 9;
 
+   
+
     public static final boolean kGyroReversed = false;
   }
 
@@ -109,8 +111,17 @@ public final class Constants {
         / kDrivingMotorReduction;
   }
 
+  public static final class OperationConstants {
+        public static final int kIntakeRollerMotorCanId = 15;
+        public static final int kArmLeader = 13;
+        public static final int kArmFollower = 23;
+
+  }
+
   public static final class OIConstants {
     public static final int kDriverControllerPort = 0;
+    public static final int kOperatorControllerPort = 1;
+    //
     public static final double kDriveDeadband = 0.05;
   }
 
