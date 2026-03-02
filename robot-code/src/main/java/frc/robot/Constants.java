@@ -89,8 +89,6 @@ public final class Constants {
     public static final int kFrontRightTurningCanId = 7;
     public static final int kRearRightTurningCanId = 9;
 
-   
-
     public static final boolean kGyroReversed = false;
   }
 
@@ -112,10 +110,11 @@ public final class Constants {
   }
 
   public static final class OperationConstants {
-        public static final int kIntakeRollerMotorCanId = 15;
-        public static final int kArmLeader = 13;
+        public static final int kIntakeRollerMotorCanId = 11;
+        public static final int kArmLeader = 25;
         public static final int kArmFollower = 23;
-
+        public static final int kShooter=12;
+        public static final int kHopper=13;
   }
 
   public static final class OIConstants {
