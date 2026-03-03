@@ -64,7 +64,7 @@ public class IntakeSubsystem extends SubsystemBase  {
         if(isArmDown) {
             target = 0;//TODO find real and make property
         } else {
-            target = 22.0;//TODO find real and make property
+            target = 5.0;//TODO find real and make property
         }
 
         armLeader.getClosedLoopController().setReference(target, ControlType.kPosition);
