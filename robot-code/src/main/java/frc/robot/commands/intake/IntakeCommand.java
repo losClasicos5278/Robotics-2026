@@ -11,7 +11,7 @@ import frc.robot.subsystems.IntakeSubsystem;
 public class IntakeCommand extends Command {
   private final IntakeSubsystem m_intakeSubsystem;
   private double m_initialSpeed = 0.0;
-  private double m_speed = 0.2; 
+  private double m_speed = 1.0; 
 
 
   /** Creates a new IntakeCommand. */

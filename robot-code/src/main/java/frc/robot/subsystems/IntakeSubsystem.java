@@ -30,7 +30,7 @@ public class IntakeSubsystem extends SubsystemBase {
 
     public IntakeSubsystem() {
         rollerConfig.smartCurrentLimit(30).idleMode(IdleMode.kCoast);
-        armConfig.smartCurrentLimit(40).idleMode(IdleMode.kBrake);
+        armConfig.smartCurrentLimit(40).idleMode(IdleMode.kCoast);
 
         armConfig.closedLoop
                 .p(0.1)// TODO: find correct limit
@@ -69,7 +69,7 @@ public class IntakeSubsystem extends SubsystemBase {
         if (isArmDown) {
             target = 0;// TODO find real and make property
         } else {
-            target = 5.0;// TODO find real and make property
+            target = 15.85;// TODO find real and make property
         }
 
         armLeader.getClosedLoopController().setReference(target, ControlType.kPosition);
