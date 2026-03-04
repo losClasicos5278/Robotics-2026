@@ -17,9 +17,8 @@ import com.revrobotics.spark.config.SparkBaseConfig.IdleMode;
 import frc.robot.Constants.OIConstants;
 import frc.robot.Constants.OperationConstants;
 
-
-
-public class IntakeSubsystem extends SubsystemBase  {
+public class IntakeSubsystem extends SubsystemBase {
+    private static IntakeSubsystem m_instance;
 
     private final SparkMax rollermotor = new SparkMax(OperationConstants.kIntakeRollerMotorCanId, MotorType.kBrushless);
     private final SparkMax armLeader = new SparkMax(OperationConstants.kArmLeader, MotorType.kBrushless);
@@ -34,37 +33,43 @@ public class IntakeSubsystem extends SubsystemBase  {
         armConfig.smartCurrentLimit(40).idleMode(IdleMode.kBrake);
 
         armConfig.closedLoop
-            .p(0.1)//TODO: find correct limit
-            .i(0.0)
-            .d(0.0)
-            .outputRange(-0.5,0.5);
+                .p(0.1)// TODO: find correct limit
+                .i(0.0)
+                .d(0.0)
+                .outputRange(-0.2, 0.2);
 
-        armConfig.softLimit.forwardSoftLimit(24)//TODO: Find real limit
-            .forwardSoftLimitEnabled(true)
-            .reverseSoftLimit(0.5)//TODO Find Real Limit
-            .reverseSoftLimitEnabled(true);
-        
+        armConfig.softLimit.forwardSoftLimit(24)// TODO: Find real limit
+                .forwardSoftLimitEnabled(true)
+                .reverseSoftLimit(0.5)// TODO Find Real Limit
+                .reverseSoftLimitEnabled(true);
+
         SparkMaxConfig followerConfig = new SparkMaxConfig();
 
-        followerConfig.follow(OperationConstants.kArmLeader,true);
+        followerConfig.follow(OperationConstants.kArmLeader, true);
 
         rollermotor.configure(rollerConfig, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
         armLeader.configure(armConfig, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
-        armFollower.configure(followerConfig, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);        
-        
+        armFollower.configure(followerConfig, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
     }
 
-    public void setRollers(double speed){
+    public static IntakeSubsystem getInstance() {
+        if (m_instance == null) {
+            m_instance = new IntakeSubsystem();
+        }
+        return m_instance;
+    }
+
+    public void setRollers(double speed) {
         rollermotor.set(speed);
     }
-    public void toggleArm(){
 
+    public void toggleArm() {
         double target;
 
-        if(isArmDown) {
-            target = 0;//TODO find real and make property
+        if (isArmDown) {
+            target = 0;// TODO find real and make property
         } else {
-            target = 5.0;//TODO find real and make property
+            target = 5.0;// TODO find real and make property
         }
 
         armLeader.getClosedLoopController().setReference(target, ControlType.kPosition);
@@ -72,14 +77,9 @@ public class IntakeSubsystem extends SubsystemBase  {
     }
 
     @Override
-    public void periodic(){
+    public void periodic() {
         SmartDashboard.putNumber("Arm Position:", armLeader.getEncoder().getPosition());
         SmartDashboard.putBoolean("Arm is Down:", isArmDown);
     }
-
-
-
-
-
 
 }

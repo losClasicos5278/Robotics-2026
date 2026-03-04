@@ -16,9 +16,10 @@ import frc.robot.Constants.DriveConstants;
 import frc.robot.Constants.OIConstants;
 
 import frc.robot.subsystems.DriveSubsystem;
-import frc.robot.subsystems.IntakeSubsystem;
 import frc.robot.commands.hopper.FeedCommand;
 import frc.robot.commands.hopper.UnclogCommand;
+import frc.robot.commands.intake.IntakeCommand;
+import frc.robot.commands.intake.ToggleArmCommand;
 
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
@@ -36,7 +37,6 @@ import java.util.List;
 public class RobotContainer {
   // The robot's subsystems
   private final DriveSubsystem m_robotDrive = new DriveSubsystem();
-  private final IntakeSubsystem m_intakeSubsystem = new IntakeSubsystem();
 
   // The operator's commands
 //   private command feedCommand = new FeedCommand;
@@ -94,14 +94,10 @@ public class RobotContainer {
         .whileTrue(new UnclogCommand());
 
     new JoystickButton(m_operatorController,XboxController.Button.kB.value)
-        .onTrue(new InstantCommand(
-            () -> m_intakeSubsystem.toggleArm(),
-            m_intakeSubsystem));
+        .onTrue(new ToggleArmCommand() );
 
     new JoystickButton(m_operatorController,XboxController.Button.kA.value)
-        .whileTrue(new InstantCommand(
-            () -> m_intakeSubsystem.setRollers(0.1),
-            m_intakeSubsystem));
+        .whileTrue(new IntakeCommand());
 
     
   }
