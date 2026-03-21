@@ -12,7 +12,7 @@ import frc.robot.subsystems.ShooterSubsystem;
 public class ShootCommand extends Command {
 private final ShooterSubsystem m_shooterSubsystem;
 private double m_initialSpeed = 0.0;
-  private double m_speed = 0.2; 
+  private double m_speed = 0.55; 
 
   /** Creates a new ShootCommand. */
   public ShootCommand() {

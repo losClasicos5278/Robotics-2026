@@ -4,6 +4,8 @@
 
 package frc.robot.subsystems;
 
+import edu.wpi.first.wpilibj.XboxController;
+
 import com.revrobotics.spark.SparkMax;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
@@ -32,7 +34,7 @@ private static ShooterSubsystem m_instance;
 
   public boolean isShooterReady(double maxSpeed) {
     double currentSpeed = m_shooter.get();
-
+    
     if (currentSpeed >= maxSpeed) {
       return true;
     }

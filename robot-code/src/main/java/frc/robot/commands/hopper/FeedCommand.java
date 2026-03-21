@@ -14,10 +14,10 @@ public class FeedCommand extends Command {
   private final ShooterSubsystem m_shooterSubsystem;
 
   private double m_initialHopperSpeed = 0.0;
-  private double m_hopperSpeed = 0.2; 
+  private double m_hopperSpeed = 1.0; 
 
   private double m_initialShooterSpeed = 0.0;
-  private double m_shooterSpeed = 0.55;
+  private double m_shooterSpeed = 0.5;
 
    /** Creates a new FeedCommand. */
   public FeedCommand() {
